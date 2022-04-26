@@ -20,7 +20,7 @@ class Ui_MainWindow(object):
         self.widget = QtWidgets.QWidget(self.centralwidget)
         self.widget.setGeometry(QtCore.QRect(570, 170, 241, 121))
         self.widget.setStyleSheet("background-color: rgb(127, 127, 127);\n"
-"")
+                                  "")
         self.widget.setObjectName("widget")
         self.lcdNumber_2 = QtWidgets.QLCDNumber(self.widget)
         self.lcdNumber_2.setGeometry(QtCore.QRect(30, 20, 100, 40))
@@ -49,7 +49,7 @@ class Ui_MainWindow(object):
         self.widget_2.setGeometry(QtCore.QRect(40, 170, 481, 281))
         self.widget_2.setWhatsThis("")
         self.widget_2.setStyleSheet("background-color: rgb(136, 136, 136);\n"
-"border-color: rgb(45, 45, 45);")
+                                    "border-color: rgb(45, 45, 45);")
         self.widget_2.setObjectName("widget_2")
         self.lighter_switch = QtWidgets.QSlider(self.widget_2)
         self.lighter_switch.setGeometry(QtCore.QRect(90, 30, 22, 61))
@@ -70,12 +70,12 @@ class Ui_MainWindow(object):
         self.blue_dot = QtWidgets.QLabel(self.widget_2)
         self.blue_dot.setGeometry(QtCore.QRect(50, -50, 111, 101))
         self.blue_dot.setStyleSheet("color: rgb(0, 0, 255);\n"
-"font: 72pt \"MS Shell Dlg 2\";")
+                                    "font: 72pt \"MS Shell Dlg 2\";")
         self.blue_dot.setObjectName("blue_dot")
         self.green_dot = QtWidgets.QLabel(self.widget_2)
         self.green_dot.setGeometry(QtCore.QRect(60, 0, 111, 101))
         self.green_dot.setStyleSheet("color: rgb(0, 170, 0);\n"
-"font: 72pt \"MS Shell Dlg 2\";")
+                                     "font: 72pt \"MS Shell Dlg 2\";")
         self.green_dot.setObjectName("green_dot")
         self.polarity_switch = QtWidgets.QSlider(self.widget_2)
         self.polarity_switch.setGeometry(QtCore.QRect(280, 210, 31, 22))
@@ -229,6 +229,12 @@ class Ui_MainWindow(object):
 
         self.polarity_plus_dial.valueChanged.connect(self.change_volt_minus)
         self.polarity_minus_dial.valueChanged.connect(self.change_volt_minus)
+
+
+        self.vkl_voltmeter.clicked.connect(self.erase_vol_1)
+        self.radioButton_2.clicked.connect(self.erase_vol_2)
+        self.vkl_lighter.actionTriggered.connect(self.erase_vol_3)
+
         self.lighter_switch.valueChanged.connect(self.getValue_length)
         self.lighter_dial.valueChanged.connect(self.getValue_light)
 
@@ -249,7 +255,7 @@ class Ui_MainWindow(object):
         self.lighter_4.setText(_translate("MainWindow", "4"))
         self.lighter_2.setText(_translate("MainWindow", "2"))
         self.lighter_3.setText(_translate("MainWindow", "3"))
-        self.lighter.setText(_translate("MainWindow", "Освеитель"))
+        self.lighter.setText(_translate("MainWindow", "Осветитель"))
         self.max_plus_polarity.setText(_translate("MainWindow", "20 "))
         self.min_plus_polarity.setText(_translate("MainWindow", "0"))
         self.max_minus_polarity.setText(_translate("MainWindow", "0"))
@@ -265,16 +271,15 @@ class Ui_MainWindow(object):
     #     if self.radioButton_2.isChecked():
     #         value =
 
-
     def getValue_length(self):
         if self.lighter_switch.value() == 0:
-            Wlength = 515*10**(-9)
+            Wlength = 515 * 10 ** (-9)
         if self.lighter_switch.value() == 1:
-            Wlength = 550 * 10**(-9)
+            Wlength = 550 * 10 ** (-9)
         print(Wlength)
 
     def getValue_light(self):
-        if  self.lighter_dial.value() == 1:
+        if self.lighter_dial.value() == 1:
             S = 1
         if self.lighter_dial.value() == 2:
             S = 2
@@ -284,28 +289,40 @@ class Ui_MainWindow(object):
             S = 4
         print(S)
 
-
     def change_volt_minus(self):
         if self.vkl_lighter.value() == 1 and self.polarity_switch.value() == 0:
             value = 0
             if self.vkl_voltmeter.isChecked() and self.polarity_minus_dial.valueChanged:
                 value = self.polarity_minus_dial.value()
                 self.voltmeter.display(value)
+
                 if self.radioButton_2.isChecked():
-                    z = value*(-self.lighter_dial.value())
+                    z = value * (-self.lighter_dial.value())
                     self.lcdNumber_2.display(z)
+
         if self.vkl_lighter.value() == 1 and self.polarity_switch.value() == 1:
             value = 0
             if self.vkl_voltmeter.isChecked() and self.polarity_plus_dial.valueChanged:
                 value = self.polarity_plus_dial.value()
                 self.voltmeter.display(value)
                 if self.radioButton_2.isChecked():
-                    z = value*2
+                    z = value * 2
                     self.lcdNumber_2.display(z)
+
+    def erase_vol_1(self):
+        self.voltmeter.display(0)
+
+    def erase_vol_2(self):
+        self.lcdNumber_2.display(0)
+
+    def erase_vol_3(self):
+        self.lcdNumber_2.display(0)
+        self.voltmeter.display(0)
 
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()

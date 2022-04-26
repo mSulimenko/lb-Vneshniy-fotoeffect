@@ -113,6 +113,9 @@
     <property name="whatsThis">
      <string/>
     </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(136, 136, 136);
 border-color: rgb(45, 45, 45);</string>
