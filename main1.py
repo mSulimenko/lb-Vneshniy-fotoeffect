@@ -1,10 +1,13 @@
+import os
 import math
 import random
 import PyQt5
 import new
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtCore import QUrl
 from PyQt5.QtWidgets import QMessageBox
 from new import Ui_Form
+from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent
 
 
 class Ui_MainWindow(object):
@@ -16,44 +19,40 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.widget = QtWidgets.QWidget(self.centralwidget)
-        self.widget.setGeometry(QtCore.QRect(730, 100, 421, 311))
+        self.widget.setGeometry(QtCore.QRect(730, 130, 421, 275))
         self.widget.setStyleSheet("background-color: rgb(127, 127, 127);\n"
                                   "")
         self.widget.setObjectName("widget")
         self.lcdNumber_2 = QtWidgets.QLCDNumber(self.widget)
-        self.lcdNumber_2.setGeometry(QtCore.QRect(20, 30, 191, 171))
+        self.lcdNumber_2.setGeometry(QtCore.QRect(20, 30, 191, 150))
         self.lcdNumber_2.setObjectName("lcdNumber_2")
         self.name_fototok = QtWidgets.QLabel(self.widget)
-        self.name_fototok.setGeometry(QtCore.QRect(60, 210, 121, 31))
+        self.name_fototok.setGeometry(QtCore.QRect(60, 180, 121, 31))
         self.name_fototok.setStyleSheet("font: 75 12pt \"Arial\";")
         self.name_fototok.setObjectName("name_fototok")
         self.radioButton_2 = QtWidgets.QRadioButton(self.widget)
-        self.radioButton_2.setGeometry(QtCore.QRect(20, 270, 101, 31))
+        self.radioButton_2.setGeometry(QtCore.QRect(20, 230, 101, 31))
         self.radioButton_2.setStyleSheet("font: 75 16pt \"Arial\";")
         self.radioButton_2.setObjectName("radioButton_2")
-        self.label_2 = QtWidgets.QLabel(self.widget)
-        self.label_2.setGeometry(QtCore.QRect(320, 290, 101, 21))
-        self.label_2.setObjectName("label_2")
         self.verticalSlider_2 = QtWidgets.QSlider(self.widget)
-        self.verticalSlider_2.setGeometry(QtCore.QRect(350, 40, 22, 160))
+        self.verticalSlider_2.setGeometry(QtCore.QRect(320, 50, 22, 160))
         self.verticalSlider_2.setMaximum(2)
         self.verticalSlider_2.setOrientation(QtCore.Qt.Vertical)
         self.verticalSlider_2.setObjectName("verticalSlider_2")
         self.label_8 = QtWidgets.QLabel(self.widget)
-        self.label_8.setGeometry(QtCore.QRect(340, 220, 70, 13))
+        self.label_8.setGeometry(QtCore.QRect(310, 230, 70, 13))
         self.label_8.setObjectName("label_8")
         self.label_13 = QtWidgets.QLabel(self.widget)
-        self.label_13.setGeometry(QtCore.QRect(380, 110, 41, 16))
+        self.label_13.setGeometry(QtCore.QRect(350, 120, 41, 16))
         self.label_13.setObjectName("label_13")
         self.label_14 = QtWidgets.QLabel(self.widget)
-        self.label_14.setGeometry(QtCore.QRect(380, 180, 41, 16))
+        self.label_14.setGeometry(QtCore.QRect(350, 190, 41, 16))
         self.label_14.setObjectName("label_14")
         self.label_15 = QtWidgets.QLabel(self.widget)
-        self.label_15.setGeometry(QtCore.QRect(380, 40, 41, 16))
+        self.label_15.setGeometry(QtCore.QRect(350, 50, 41, 16))
         self.label_15.setObjectName("label_15")
         self.lcdNumber_2.raise_()
         self.name_fototok.raise_()
-        self.label_2.raise_()
         self.radioButton_2.raise_()
         self.verticalSlider_2.raise_()
         self.label_8.raise_()
@@ -67,7 +66,7 @@ class Ui_MainWindow(object):
                                     "border-color: rgb(45, 45, 45);")
         self.widget_2.setObjectName("widget_2")
         self.lighter_switch = QtWidgets.QSlider(self.widget_2)
-        self.lighter_switch.setGeometry(QtCore.QRect(280, 150, 41, 81))
+        self.lighter_switch.setGeometry(QtCore.QRect(380, 145, 41, 81))
         self.lighter_switch.setStyleSheet("")
         self.lighter_switch.setMaximum(1)
         self.lighter_switch.setSingleStep(1)
@@ -77,24 +76,24 @@ class Ui_MainWindow(object):
         self.lighter_switch.setOrientation(QtCore.Qt.Vertical)
         self.lighter_switch.setObjectName("lighter_switch")
         self.blue_color = QtWidgets.QLabel(self.widget_2)
-        self.blue_color.setGeometry(QtCore.QRect(40, 70, 241, 131))
+        self.blue_color.setGeometry(QtCore.QRect(170, 60, 251, 131))
         font = QtGui.QFont()
         font.setPointSize(28)
         self.blue_color.setFont(font)
         self.blue_color.setObjectName("blue_color")
         self.green_color = QtWidgets.QLabel(self.widget_2)
-        self.green_color.setGeometry(QtCore.QRect(20, 190, 211, 91))
+        self.green_color.setGeometry(QtCore.QRect(120, 180, 211, 91))
         font = QtGui.QFont()
         font.setPointSize(28)
         self.green_color.setFont(font)
         self.green_color.setObjectName("green_color")
         self.blue_dot = QtWidgets.QLabel(self.widget_2)
-        self.blue_dot.setGeometry(QtCore.QRect(220, 50, 121, 91))
+        self.blue_dot.setGeometry(QtCore.QRect(320, 50, 121, 90))
         self.blue_dot.setStyleSheet("color: rgb(0, 0, 255);\n"
                                     "font: 72pt \"MS Shell Dlg 2\";")
         self.blue_dot.setObjectName("blue_dot")
         self.green_dot = QtWidgets.QLabel(self.widget_2)
-        self.green_dot.setGeometry(QtCore.QRect(230, 150, 111, 101))
+        self.green_dot.setGeometry(QtCore.QRect(320, 150, 121, 90))
         self.green_dot.setStyleSheet("color: rgb(0, 170, 0);\n"
                                      "font: 72pt \"MS Shell Dlg 2\";")
         self.green_dot.setObjectName("green_dot")
@@ -129,25 +128,22 @@ class Ui_MainWindow(object):
         font.setWeight(50)
         self.polarity_minus.setFont(font)
         self.polarity_minus.setObjectName("polarity_minus")
-        self.lighter_1 = QtWidgets.QLabel(self.widget_2)
-        self.lighter_1.setGeometry(QtCore.QRect(560, 480, 21, 41))
-        self.lighter_1.setStyleSheet("font: 75 16pt \"Arial\";")
-        self.lighter_1.setObjectName("lighter_1")
+        self.lighter_2 = QtWidgets.QLabel(self.widget_2)
+        self.lighter_2.setGeometry(QtCore.QRect(560, 480, 21, 41))
+        self.lighter_2.setStyleSheet("font: 75 16pt \"Arial\";")
+        self.lighter_2.setObjectName("lighter_2")
         self.lighter_4 = QtWidgets.QLabel(self.widget_2)
         self.lighter_4.setGeometry(QtCore.QRect(630, 480, 21, 41))
         self.lighter_4.setStyleSheet("font: 75 16pt \"Arial\";")
         self.lighter_4.setObjectName("lighter_4")
-        self.lighter_2 = QtWidgets.QLabel(self.widget_2)
-        self.lighter_2.setGeometry(QtCore.QRect(560, 420, 21, 31))
-        self.lighter_2.setStyleSheet("font: 75 16pt \"Arial\";")
-        self.lighter_2.setObjectName("lighter_2")
+
         self.lighter_3 = QtWidgets.QLabel(self.widget_2)
-        self.lighter_3.setGeometry(QtCore.QRect(630, 420, 15, 32))
+        self.lighter_3.setGeometry(QtCore.QRect(597, 400, 15, 32))
         self.lighter_3.setSizeIncrement(QtCore.QSize(0, 0))
         self.lighter_3.setStyleSheet("font: 75 16pt \"Arial\";")
         self.lighter_3.setObjectName("lighter_3")
         self.lighter = QtWidgets.QLabel(self.widget_2)
-        self.lighter.setGeometry(QtCore.QRect(510, 380, 171, 41))
+        self.lighter.setGeometry(QtCore.QRect(510, 350, 171, 41))
         self.lighter.setStyleSheet("font: 75 14pt \"Arial\";")
         self.lighter.setObjectName("lighter")
         self.polarity_plus_dial = QtWidgets.QDial(self.widget_2)
@@ -217,7 +213,7 @@ class Ui_MainWindow(object):
         self.label_4.setFont(font)
         self.label_4.setObjectName("label_4")
         self.label_5 = QtWidgets.QLabel(self.widget_2)
-        self.label_5.setGeometry(QtCore.QRect(350, 530, 47, 31))
+        self.label_5.setGeometry(QtCore.QRect(370, 530, 47, 31))
         font = QtGui.QFont()
         font.setPointSize(18)
         self.lighter_5 = QtWidgets.QLabel(self.widget_2)
@@ -233,11 +229,11 @@ class Ui_MainWindow(object):
         self.lighter_dial = QtWidgets.QDial(self.widget_2)
         self.lighter_dial.setGeometry(QtCore.QRect(565, 420, 81, 91))
         self.lighter_dial.setAutoFillBackground(False)
-        self.lighter_dial.setMinimum(1)
+        self.lighter_dial.setMinimum(2)
         self.lighter_dial.setMaximum(4)
         self.lighter_dial.setSingleStep(2)
         self.lighter_dial.setPageStep(1)
-        self.lighter_dial.setProperty("value", 1)
+        self.lighter_dial.setProperty("value", 2)
         self.lighter_dial.setOrientation(QtCore.Qt.Vertical)
         self.lighter_dial.setWrapping(False)
         self.lighter_dial.setNotchesVisible(False)
@@ -248,9 +244,8 @@ class Ui_MainWindow(object):
         self.polarity_plus.raise_()
         self.polarity_minus.raise_()
         self.polarity_switch.raise_()
-        self.lighter_1.raise_()
-        self.lighter_4.raise_()
         self.lighter_2.raise_()
+        self.lighter_4.raise_()
         self.lighter_3.raise_()
         self.lighter.raise_()
         self.min_plus_polarity.raise_()
@@ -268,11 +263,11 @@ class Ui_MainWindow(object):
         self.max_minus_polarity.raise_()
         self.lighter_dial.raise_()
         self.widget_3 = QtWidgets.QWidget(self.centralwidget)
-        self.widget_3.setGeometry(QtCore.QRect(730, 440, 421, 291))
+        self.widget_3.setGeometry(QtCore.QRect(730, 421, 421, 280))
         self.widget_3.setStyleSheet("background-color: rgb(127, 127, 127);")
         self.widget_3.setObjectName("widget_3")
         self.voltmeter = QtWidgets.QLCDNumber(self.widget_3)
-        self.voltmeter.setGeometry(QtCore.QRect(20, 50, 191, 121))
+        self.voltmeter.setGeometry(QtCore.QRect(20, 80, 191, 121))
         self.voltmeter.setFrameShape(QtWidgets.QFrame.Box)
         self.voltmeter.setFrameShadow(QtWidgets.QFrame.Raised)
         self.voltmeter.setDigitCount(5)
@@ -280,39 +275,19 @@ class Ui_MainWindow(object):
         self.voltmeter.setProperty("value", 0.0)
         self.voltmeter.setObjectName("voltmeter")
         self.vkl_voltmeter = QtWidgets.QRadioButton(self.widget_3)
-        self.vkl_voltmeter.setGeometry(QtCore.QRect(20, 240, 111, 51))
+        self.vkl_voltmeter.setGeometry(QtCore.QRect(300, 210, 111, 51))
         self.vkl_voltmeter.setStyleSheet("font: 75 16pt \"Arial\";")
         self.vkl_voltmeter.setObjectName("vkl_voltmeter")
-        self.label = QtWidgets.QLabel(self.widget_3)
-        self.label.setGeometry(QtCore.QRect(320, 270, 101, 21))
-        self.label.setObjectName("label")
+
         self.label_9 = QtWidgets.QLabel(self.widget_3)
-        self.label_9.setGeometry(QtCore.QRect(110, 180, 47, 31))
+        self.label_9.setGeometry(QtCore.QRect(100, 210, 47, 31))
         font = QtGui.QFont()
         font.setPointSize(18)
         self.label_9.setFont(font)
         self.label_9.setObjectName("label_9")
-        self.predel_volt = QtWidgets.QSlider(self.widget_3)
-        self.predel_volt.setGeometry(QtCore.QRect(350, 40, 22, 160))
-        self.predel_volt.setMaximum(2)
-        self.predel_volt.setPageStep(1)
-        self.predel_volt.setOrientation(QtCore.Qt.Vertical)
-        self.predel_volt.setObjectName("predel_volt")
-        self.label_7 = QtWidgets.QLabel(self.widget_3)
-        self.label_7.setGeometry(QtCore.QRect(340, 220, 70, 13))
-        self.label_7.setObjectName("label_7")
-        self.label_10 = QtWidgets.QLabel(self.widget_3)
-        self.label_10.setGeometry(QtCore.QRect(380, 180, 41, 16))
-        self.label_10.setObjectName("label_10")
-        self.label_11 = QtWidgets.QLabel(self.widget_3)
-        self.label_11.setGeometry(QtCore.QRect(380, 110, 41, 16))
-        self.label_11.setObjectName("label_11")
-        self.label_12 = QtWidgets.QLabel(self.widget_3)
-        self.label_12.setGeometry(QtCore.QRect(380, 40, 41, 16))
-        self.label_12.setObjectName("label_12")
 
         self.label_16 = QtWidgets.QLabel(self.widget_3)
-        self.label_16.setGeometry(QtCore.QRect(240, 0, 201, 41))
+        self.label_16.setGeometry(QtCore.QRect(230, 15, 201, 41))
         self.label_16.setStyleSheet("font: 75 16pt \"Arial\";")
         self.label_16.setObjectName("label_16")
         self.label_16.raise_()
@@ -321,15 +296,10 @@ class Ui_MainWindow(object):
         self.label_17.setStyleSheet("font: 75 16pt \"Arial\";")
         self.label_17.setObjectName("label_17")
         self.label_17.raise_()
-        self.label.raise_()
         self.voltmeter.raise_()
         self.vkl_voltmeter.raise_()
         self.label_9.raise_()
-        self.predel_volt.raise_()
-        self.label_7.raise_()
-        self.label_10.raise_()
-        self.label_11.raise_()
-        self.label_12.raise_()
+
         self.label_6 = QtWidgets.QLabel(self.centralwidget)
         self.label_6.setGeometry(QtCore.QRect(-80, -40, 2131, 1080))
         self.label_6.setText("")
@@ -340,9 +310,9 @@ class Ui_MainWindow(object):
         self.widget.raise_()
         self.widget_3.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
-###############################################################
+        ###############################################################
         self.Additional = QtWidgets.QLabel(self.centralwidget)
-        self.Additional.setGeometry(QtCore.QRect(180, 40, 231, 31))
+        self.Additional.setGeometry(QtCore.QRect(165, 40, 235, 31))
         self.Additional.setFont(font)
         self.Additional.setObjectName("Additional")
         self.Additional.raise_()
@@ -356,7 +326,7 @@ class Ui_MainWindow(object):
         self.InfoFon = QtWidgets.QWidget(self.centralwidget)
         self.InfoFon.setGeometry(QtCore.QRect(150, 30, 255, 91))
         self.InfoFon.setStyleSheet("background-color: rgb(127, 127, 127);\n"
-"")
+                                   "")
         self.InfoFon.setObjectName("InfoFon")
         self.InfoFon.raise_()
         self.InfoFon.setObjectName("InfoFon")
@@ -372,8 +342,25 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
+
         self.polarity_minus_dial.valueChanged.connect(self.change_volt_minus)
         self.polarity_plus_dial.valueChanged.connect(self.change_volt_plus)
+        self.verticalSlider_2.valueChanged.connect(self.change_volt_plus)
+        self.verticalSlider_2.valueChanged.connect(self.change_volt_minus)
+        self.lighter_dial.valueChanged.connect(self.change_volt_plus)
+        self.lighter_dial.valueChanged.connect(self.change_volt_minus)
+        self.lighter_switch.valueChanged.connect(self.change_volt_plus)
+        self.lighter_switch.valueChanged.connect(self.change_volt_minus)
+        self.polarity_switch.valueChanged.connect(self.change_volt_plus)
+        self.polarity_switch.valueChanged.connect(self.change_volt_minus)
+        self.vkl_lighter.valueChanged.connect(self.change_volt_plus)
+        self.vkl_lighter.valueChanged.connect(self.change_volt_minus)
+        self.vkl_voltmeter.clicked.connect(self.change_volt_plus)
+        self.vkl_voltmeter.clicked.connect(self.change_volt_minus)
+        self.radioButton_2.clicked.connect(self.change_volt_plus)
+        self.radioButton_2.clicked.connect(self.change_volt_minus)
+
+        self.radioButton_2.clicked.connect(self.Sound)
 
         self.InfoButton.clicked.connect(self.Information)
         self.vkl_voltmeter.clicked.connect(self.erase_vol_1)
@@ -381,6 +368,7 @@ class Ui_MainWindow(object):
         self.vkl_lighter.actionTriggered.connect(self.erase_vol_3)
 
         self.status = 1
+
     def Information(self):
         if not self.InfoButton.isChecked() and self.status:
             self.status = 0
@@ -396,7 +384,6 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.name_fototok.setText(_translate("MainWindow", "Фототок 1 µА"))
         self.radioButton_2.setText(_translate("MainWindow", "  Сеть"))
-        self.label_2.setText(_translate("MainWindow", "Сделано в СССР"))
         self.label_8.setText(_translate("MainWindow", "Пределы"))
         self.label_13.setText(_translate("MainWindow", "10"))
         self.label_14.setText(_translate("MainWindow", "1"))
@@ -408,9 +395,8 @@ class Ui_MainWindow(object):
         self.polarity.setText(_translate("MainWindow", "Полярность S2"))
         self.polarity_plus.setText(_translate("MainWindow", "+"))
         self.polarity_minus.setText(_translate("MainWindow", "   -"))
-        self.lighter_1.setText(_translate("MainWindow", "1"))
-        self.lighter_4.setText(_translate("MainWindow", "4"))
         self.lighter_2.setText(_translate("MainWindow", "2"))
+        self.lighter_4.setText(_translate("MainWindow", "4"))
         self.lighter_3.setText(_translate("MainWindow", "3"))
         self.lighter.setText(_translate("MainWindow", "Осветитель S3"))
         self.lighter_5.setText(_translate("MainWindow", "Ручка R1"))
@@ -421,125 +407,139 @@ class Ui_MainWindow(object):
         self.min_minus_polarity.setText(_translate("MainWindow", "-1000"))
         self.label_3.setText(_translate("MainWindow", "  Сеть"))
         self.label_4.setText(_translate("MainWindow", "мВ"))
-        self.label_5.setText(_translate("MainWindow", "мВ"))
+        self.label_5.setText(_translate("MainWindow", "В"))
         self.vkl_voltmeter.setText(_translate("MainWindow", "  Сеть"))
-        self.label.setText(_translate("MainWindow", "Сделано в СССР"))
-        self.label_9.setText(_translate("MainWindow", "мВ"))
-        self.label_7.setText(_translate("MainWindow", "Пределы"))
-        self.label_10.setText(_translate("MainWindow", "1"))
-        self.label_11.setText(_translate("MainWindow", "10"))
-        self.label_12.setText(_translate("MainWindow", "100"))
-        self.Additional.setText(_translate("MainWindow", "Дополнительно"))
+        self.label_9.setText(_translate("MainWindow", "В"))
+
+        self.Additional.setText(_translate("MainWindow", "Схема Установки"))
         self.label_16.setText(_translate("MainWindow", "Вольтметр PU"))
         self.label_17.setText(_translate("MainWindow", "Амперметр PA"))
 
+
+
     def change_volt_plus(self):
         if self.vkl_lighter.value() == 1 and self.polarity_switch.value() == 1:  # плюс полярность
-            if self.vkl_voltmeter.isChecked() and self.polarity_plus_dial.valueChanged:
+            if self.vkl_voltmeter.isChecked() and (
+                    self.polarity_plus_dial.valueChanged or self.verticalSlider_2.valueChanged or self.lighter_dial.valueChanged or self.lighter_switch.valueChanged or self.polarity_switch.valueChanged):
                 value = self.polarity_plus_dial.value()
-                if self.predel_volt.value() == 0:
-                    self.voltmeter.display(value * 0.001)
-                if self.predel_volt.value() == 1:
-                    self.voltmeter.display(value * 0.01)
-                if self.predel_volt.value() == 2:
-                    self.voltmeter.display(value * 0.1)
+                self.voltmeter.display(value * 0.001)
 
-                if self.radioButton_2.isChecked() and self.lighter_dial.value() == 1:
-                    z = ((-2 - math.exp(-(value * 0.001 - 1.8) * 0.5)) * 0.3 + 1.5)
+                if self.radioButton_2.isChecked() and self.lighter_dial.value() == 2 and self.lighter_switch.value() == 0:
+                    z = ((-2 - math.exp(-(value * 0.001 - 2.55) * 0.4)) * 0.25 + 1.3) * 2.5
                     if self.verticalSlider_2.value() == 0:
-                        self.lcdNumber_2.display(z*0.001)
+                        self.lcdNumber_2.display(z * 100)
                     if self.verticalSlider_2.value() == 1:
-                        self.lcdNumber_2.display(z*0.01)
+                        self.lcdNumber_2.display(z * 1000)
                     if self.verticalSlider_2.value() == 2:
-                        self.lcdNumber_2.display(z*0.1)
+                        self.lcdNumber_2.display(z * 10000)
 
-                if self.radioButton_2.isChecked() and self.lighter_dial.value() == 2:
-                    z = ((-2 - math.exp(-(value * 0.001 - 2.7) * 0.4)) * 0.25 + 1.3)
+                if self.radioButton_2.isChecked() and self.lighter_dial.value() == 3 and self.lighter_switch.value() == 0:
+                    z = ((-2 - math.exp(-(value * 0.001 - 2.55) * 0.4)) * 0.25 + 1.3) * 1.5
                     if self.verticalSlider_2.value() == 0:
-                        self.lcdNumber_2.display(z*0.001)
+                        self.lcdNumber_2.display(z * 100)
                     if self.verticalSlider_2.value() == 1:
-                        self.lcdNumber_2.display(z*0.01)
+                        self.lcdNumber_2.display(z * 1000)
                     if self.verticalSlider_2.value() == 2:
-                        self.lcdNumber_2.display(z*0.1)
+                        self.lcdNumber_2.display(z * 10000)
 
-                if self.radioButton_2.isChecked() and self.lighter_dial.value() == 3:
-                    z = ((-2 - math.exp(-(value * 0.001 - 1.75) * 0.4)) * 0.29 + 1.3)
+                if self.radioButton_2.isChecked() and self.lighter_dial.value() == 4 and self.lighter_switch.value() == 0:
+                    z = ((-2 - math.exp(-(value * 0.001 - 2.55) * 0.4)) * 0.25 + 1.3) * 0.75
                     if self.verticalSlider_2.value() == 0:
-                        self.lcdNumber_2.display(z*0.001)
+                        self.lcdNumber_2.display(z * 100)
                     if self.verticalSlider_2.value() == 1:
-                        self.lcdNumber_2.display(z*0.01)
+                        self.lcdNumber_2.display(z * 1000)
                     if self.verticalSlider_2.value() == 2:
-                        self.lcdNumber_2.display(z*0.1)
+                        self.lcdNumber_2.display(z * 10000)
 
-                if self.radioButton_2.isChecked() and self.lighter_dial.value() == 4:
-                    z = ((-2 - math.exp(-(value * 0.001 - 1.75) * 0.4)) * 0.29 + 1.16)
+                if self.radioButton_2.isChecked() and self.lighter_dial.value() == 2 and self.lighter_switch.value() == 1:
+                    z = ((-2 - math.exp(-(value * 0.001 - 2.55) * 0.4)) * 0.25 + 1.3) * 2.087
                     if self.verticalSlider_2.value() == 0:
-                        self.lcdNumber_2.display(z*0.001)
+                        self.lcdNumber_2.display(z * 100)
                     if self.verticalSlider_2.value() == 1:
-                        self.lcdNumber_2.display(z*0.01)
+                        self.lcdNumber_2.display(z * 1000)
                     if self.verticalSlider_2.value() == 2:
-                        self.lcdNumber_2.display(z*0.1)
+                        self.lcdNumber_2.display(z * 10000)
+
+                if self.radioButton_2.isChecked() and self.lighter_dial.value() == 3 and self.lighter_switch.value() == 1:
+                    z = ((-2 - math.exp(-(value * 0.001 - 2.55) * 0.4)) * 0.25 + 1.3) * 1.2525
+                    if self.verticalSlider_2.value() == 0:
+                        self.lcdNumber_2.display(z * 100)
+                    if self.verticalSlider_2.value() == 1:
+                        self.lcdNumber_2.display(z * 1000)
+                    if self.verticalSlider_2.value() == 2:
+                        self.lcdNumber_2.display(z * 10000)
+
+                if self.radioButton_2.isChecked() and self.lighter_dial.value() == 4 and self.lighter_switch.value() == 1:
+                    z = ((-2 - math.exp(-(value * 0.001 - 2.55) * 0.4)) * 0.25 + 1.3) * 0.62625
+                    if self.verticalSlider_2.value() == 0:
+                        self.lcdNumber_2.display(z * 100)
+                    if self.verticalSlider_2.value() == 1:
+                        self.lcdNumber_2.display(z * 1000)
+                    if self.verticalSlider_2.value() == 2:
+                        self.lcdNumber_2.display(z * 10000)
 
     def change_volt_minus(self):  # минус полярность
         if self.vkl_lighter.value() == 1 and self.polarity_switch.value() == 0 and self.lighter_switch.value() == 0:
-            if self.vkl_voltmeter.isChecked() and self.polarity_minus_dial.valueChanged:
+            if self.vkl_voltmeter.isChecked() and (
+                    self.polarity_minus_dial.valueChanged or self.verticalSlider_2.valueChanged or self.lighter_dial.valueChanged or self.lighter_switch.valueChanged or self.polarity_switch.valueChanged):
                 value = -self.polarity_minus_dial.value()
-                if self.predel_volt.value() == 0:
-                    self.voltmeter.display(value * 0.001)
-                if self.predel_volt.value() == 1:
-                    self.voltmeter.display(value * 0.01)
-                if self.predel_volt.value() == 2:
-                    self.voltmeter.display(value * 0.1)
+                # if value == 0:
+                #     self.voltmeter.display(0)
+                # else:
+                self.voltmeter.display(value)
 
                 if self.radioButton_2.isChecked():
-                    z = ((-2 - math.exp(-(value * 0.001 - 2.5) * 0.4)) * 0.25 + 1.3)
+                    z = ((-2 - math.exp(-(value * 0.001 - 2.55) * 0.4)) * 0.25 + 1.3) * 2.5
                     # if z < 0:
                     #     self.lcdNumber_2.display(0)
-                    if int(z) == 0:
+                    # if z == 0:
+                    #     self.lcdNumber_2.display(z)
+                    #     self.voltmeter.display((value + random.randint(0, 50))*1000)
+                    # if z > 0:
+                    if -358 >= value >= -360:
+                        z=0
+                        self.lcdNumber_2.display(0)
+                    elif z < 0:
+                        z = -0.002  #################################################################
                         if self.verticalSlider_2.value() == 0:
-                            self.voltmeter.display((value + random.randint(0, 50)) * 0.001)
+                            self.lcdNumber_2.display(z * 100)
                         if self.verticalSlider_2.value() == 1:
-                            self.voltmeter.display((value + random.randint(0, 50)) * 0.01)
+                            self.lcdNumber_2.display(z * 1000)
                         if self.verticalSlider_2.value() == 2:
-                            self.voltmeter.display((value + random.randint(0, 50)) * 0.1)
-
-                    if z > 0:
+                            self.lcdNumber_2.display(z * 10000)
+                    else:
                         if self.verticalSlider_2.value() == 0:
-                            self.lcdNumber_2.display(z * 0.001)
+                            self.lcdNumber_2.display(z * 100)
                         if self.verticalSlider_2.value() == 1:
-                            self.lcdNumber_2.display(z * 0.01)
+                            self.lcdNumber_2.display(z * 1000)
                         if self.verticalSlider_2.value() == 2:
-                            self.lcdNumber_2.display(z * 0.1)
+                            self.lcdNumber_2.display(z * 10000)
 
         if self.vkl_lighter.value() == 1 and self.polarity_switch.value() == 0 and self.lighter_switch.value() == 1:
-            if self.vkl_voltmeter.isChecked() and self.polarity_minus_dial.valueChanged:
+            if self.vkl_voltmeter.isChecked() and (self.polarity_minus_dial.valueChanged or self.verticalSlider_2.valueChanged or self.lighter_dial.valueChanged or self.lighter_switch.valueChanged or self.polarity_switch.valueChanged):
                 value = -self.polarity_minus_dial.value()
                 self.voltmeter.display(value)
-                if self.predel_volt.value() == 0:
-                    self.voltmeter.display(value * 0.001)
-                if self.predel_volt.value() == 1:
-                    self.voltmeter.display(value * 0.01)
-                if self.predel_volt.value() == 2:
-                    self.voltmeter.display(value * 0.1)
 
                 if self.radioButton_2.isChecked():
-                    z = ((-2 - math.exp(-(value * 0.001 - 2.4) * 0.4)) * 0.25 + 1.3)
-                    # if z < 0:
-                    #     self.lcdNumber_2.display(0)
-                    if int(z) == 0:
+                    z = ((-2 - math.exp(-(value * 0.001 - 2.5) * 0.4)) * 0.25 + 1.3) * 2.5
+                    if -408 >= value >= -410:
+                        z=0
+                        self.lcdNumber_2.display(0)
+                    if z < 0:
+                        z = -0.002  #################################################################
                         if self.verticalSlider_2.value() == 0:
-                            self.voltmeter.display((value + random.randint(0, 50)) * 0.001)
+                            self.lcdNumber_2.display(z * 100)
                         if self.verticalSlider_2.value() == 1:
-                            self.voltmeter.display((value + random.randint(0, 50)) * 0.01)
+                            self.lcdNumber_2.display(z * 1000)
                         if self.verticalSlider_2.value() == 2:
-                            self.voltmeter.display((value + random.randint(0, 50)) * 0.1)
-                    if z > 0:
+                            self.lcdNumber_2.display(z * 10000)
+                    else:
                         if self.verticalSlider_2.value() == 0:
-                            self.lcdNumber_2.display(z * 0.001)
+                            self.lcdNumber_2.display(z * 100)
                         if self.verticalSlider_2.value() == 1:
-                            self.lcdNumber_2.display(z * 0.01)
+                            self.lcdNumber_2.display(z * 1000)
                         if self.verticalSlider_2.value() == 2:
-                            self.lcdNumber_2.display(z * 0.1)
+                            self.lcdNumber_2.display(z * 10000)
 
     def erase_vol_1(self):
         self.voltmeter.display(0)
